@@ -94,12 +94,36 @@ function calculateAverages( userList) {
     console.log(avgExpenses);
 
     targetedAverage.housing.average = (avgExpenses.housing.mortgage + avgExpenses.housing.rent + avgExpenses.housing.utilities);
+    targetedAverage.housing.subcategory.mortgage = avgExpenses.housing.mortgage;
+    targetedAverage.housing.subcategory.rent = avgExpenses.housing.rent;
+    targetedAverage.housing.subcategory.utilities = avgExpenses.housing.utilities;
+
     targetedAverage.communications.average = (avgExpenses.communications.internet + avgExpenses.communications.cable + avgExpenses.communications.cell);
+    targetedAverage.communications.subcategory.internet = avgExpenses.communications.internet;
+    targetedAverage.communications.subcategory.cable = avgExpenses.communications.cable;
+    targetedAverage.communications.subcategory.cell = avgExpenses.communications.cell
+
     targetedAverage.transport.average = (avgExpenses.transport.car + avgExpenses.transport.public);
+    targetedAverage.transport.subcategory.car = avgExpenses.transport.car;
+    targetedAverage.transport.subcategory.public = + avgExpenses.transport.public;
+
     targetedAverage.food.average = (avgExpenses.food.restaurants + avgExpenses.food.supermarket);
+    targetedAverage.food.subcategory.restaurants = avgExpenses.food.restaurants;
+    targetedAverage.food.subcategory.supermarket = avgExpenses.food.supermarket;
+
     targetedAverage.aesthetics.average = (avgExpenses.aesthetics.body + avgExpenses.aesthetics.clothes);
-    targetedAverage.subscriptions.average = (avgExpenses.subscriptions.music + avgExpenses.subscriptions.gym + avgExpenses.subscriptions.music + avgExpenses.subscriptions.others);
+    targetedAverage.aesthetics.subcategory.body = avgExpenses.aesthetics.body;
+    targetedAverage.aesthetics.subcategory.clothes = avgExpenses.aesthetics.clothes
+
+    targetedAverage.subscriptions.average = (avgExpenses.subscriptions.music + avgExpenses.subscriptions.gym + avgExpenses.subscriptions.others);
+    targetedAverage.subscriptions.subcategory.music = avgExpenses.subscriptions.music + avgExpenses.subscriptions.gym + avgExpenses.subscriptions.music + avgExpenses.subscriptions.others
+    targetedAverage.subscriptions.subcategory.gym = avgExpenses.subscriptions.gym;
+    targetedAverage.subscriptions.subcategory.others = avgExpenses.subscriptions.other;
+    
     targetedAverage.health.average = (avgExpenses.health.prescriptions + avgExpenses.health.appointments);
+    targetedAverage.health.subcategory.prescriptions = avgExpenses.health.prescriptions;
+    targetedAverage.health.subcategory.appointments = avgExpenses.health.appointments
+    
     targetedAverage.other.average = avgExpenses.other;
 
     console.log(targetedAverage);
