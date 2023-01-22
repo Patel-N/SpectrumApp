@@ -59,6 +59,8 @@ const Home = () => {
     ]
 
     return (
+
+        <div>
         <Grow in>
             <Container> 
             {/* <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">
@@ -125,12 +127,31 @@ const Home = () => {
                     </Grid>
                 </Grid>
                 <br/><br/><br/><br/><br/> */}
-                <DonutGraph monthlyUserExpenses={monthlyUserExpenses} />
-                <CompareGraph monthlyUserExpenses={monthlyUserExpenses} monthlyAverageExpenses={monthlyAverageExpenses} />
+
+                    <Grid container >
+                            <Grid item xs={6}> 
+                            <Grid container spacing={0} justifyContent="center" alignItems="center">
+                                    <div className={classes.container} >Your Spendings</div>
+                                </Grid>
+                            <DonutGraph monthlyUserExpenses={monthlyUserExpenses} />
+                            <Grid direction="column" item container xs spacing={2} justifyContent="center" alignItems="center">
+                            
+                            </Grid>
+                            </Grid>
+                            
+                            <Grid item xs={6}>
+                            <Grid container spacing={0} justifyContent="center" alignItems="center">
+                                    <div className={classes.container} >Your Spectrum Averages</div>
+                                </Grid>
+                            <CompareGraph monthlyUserExpenses={monthlyUserExpenses} monthlyAverageExpenses={monthlyAverageExpenses} />
+                            </Grid>
+                    </Grid>
+
+                
             </Container>
 
         </Grow>
-
+    </div>
 
     );
 }

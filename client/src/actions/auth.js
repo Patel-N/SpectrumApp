@@ -15,7 +15,7 @@ export const signin = (formData, history) => async (dispatch) => {
         // dispatch it to reducers
         dispatch({type: 'AUTH', data});
 
-        history('/');
+        history('/dashboard');
 
     } catch (error) {
         console.log(error)

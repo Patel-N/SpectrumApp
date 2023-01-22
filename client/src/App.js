@@ -16,11 +16,11 @@ const App = () => {
     return (
 
         <BrowserRouter>
-            <Navbar></Navbar>
-            <Container maxidth="lg" p>
+        
+            <Container maxidth="lg">
                 <Routes>
-                    <Route path="/auth" exact element={<Auth />} />
-                    <Route path="/" exact element={<Home />} />
+                    <Route path="/" exact element={<Auth />} />
+                    <Route path="/dashboard" exact element={<Home />} />
                     <Route path="/optimize" exact element={<Optimize />} />
                     <Route path="/profiles" exact element={<Profiles />} />
                 </Routes>
