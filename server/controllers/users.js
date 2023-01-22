@@ -19,15 +19,15 @@ export const getUsers = async (req, res) => {
 }
 
 export const getUserExpenses = async (req, res) => {
-    console.log(req.param);
+
     try {
         console.log('Get user expenses')
+        const {id} = req.body;
         //Get all the user expenses based on the schema
-        console.log(req);
-        // const userExpenses = await Expenses.findById(1)
+        const userExpenses = await Expenses.findOne({id:id});
         
         //response 200
-
+        res.status(200).json({result:userExpenses});
     } catch (error) {
 
         res.status(404).json({message: error.message});

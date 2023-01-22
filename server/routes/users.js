@@ -13,6 +13,6 @@ export default router;
 // callback function which will be executed  once someone visits localhost:5000/
 router.get('/', getUsers);
 
-router.get('/expenses', getUserExpenses);
+router.post('/expenses', getUserExpenses);
 
 router.post('/signin', signin);

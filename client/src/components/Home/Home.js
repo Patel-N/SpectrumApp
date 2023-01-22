@@ -17,7 +17,7 @@ const Home = () => {
 
     const currentUser = JSON.parse(localStorage.getItem("profile"));
     const [userId, setUserId] = useState({id:currentUser.result.id});
-
+       
 
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const Home = () => {
 
   // basically allows us to extract data from Redux store state, using selector function
   const users = useSelector((state) => state.users)
-//   console.log(users)
+  console.log(users)
 
     const data = ["Rent", "Transport", "Your Mom", ];
 

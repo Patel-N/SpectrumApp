@@ -6,6 +6,6 @@ const API = axios.create({baseURL:  'http://localhost:5000'});
 // api request to get users
 export const fetchUsers = () => API.get('/users');
 
-export const fetchUserExpenses = (id) => API.get('/users/expenses', id);
+export const fetchUserExpenses = (userId) => API.post('/users/expenses', userId);
 
 export const signIn = (formData) => API.post('/users/signin', formData);
