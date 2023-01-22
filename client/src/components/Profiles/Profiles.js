@@ -26,6 +26,7 @@ const Profiles = () => {
             direction="column"
             alignItems="center"
             justify='center'
+            tableBodyHeight ='500px'
             style={{minHeight: '100vh'}}
             fontColor='red'>
             

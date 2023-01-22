@@ -8,20 +8,15 @@ import {
   ThemeProvider
 } from "@material-ui/core/styles";
 import { lightGreen, blue, purple, pink } from "@material-ui/core/colors";
-import {useDispatch} from 'react-redux';
 import { getFilteredUsers } from './Filter';
 import { getUsers } from '../../actions/users';
 import { useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
+import Navbar from "../Navbar/Navbar.js"
 // const [queryInfo, setQueryInfo] = useState({ salary:0, country: '', province: ''});
 
 const Optimize = () => {
-    const monthlyUserExpenses = [
-        { x: "housing", y: 1 }, { x: "communications", y: 4 },
-        { x: "transport", y: 5 }, { x: "food", y: 7 },
-        { x: "aesthetics", y: 9 }, { x: "subscriptions", y: 11 },
-        { x: "health", y: 13 }, { x: "other", y: 14 }
-    ]
+    
     const customTheme = createTheme({
         palette: {
           primary: lightGreen,
@@ -36,14 +31,39 @@ const Optimize = () => {
       }
 
     const dispatch = useDispatch();
+
+    
     
     useEffect(() => {
         dispatch(getUsers());
     }, [dispatch]);
 
-    
+    const users = useSelector((state) => state.users);
+users.shift();
+const targetedAverage = getFilteredUsers(users);
+
+
+const avg_aest = targetedAverage.aesthetics.average;
+const communications = targetedAverage.communications.average;
+const food = targetedAverage.food.average;
+const health = targetedAverage.health.average;
+const housing = targetedAverage.housing.average;
+const other = targetedAverage.other.average;
+const subscriptions = targetedAverage.subscriptions.average;
+const transport = targetedAverage.transport.average;
+
+const monthlyUserExpenses = [
+  { x: "housing", y: housing }, { x: "communications", y: communications },
+  { x: "transport", y: transport }, { x: "food", y: food },
+  { x: "aesthetics", y: avg_aest }, { x: "subscriptions", y: subscriptions },
+  { x: "health", y: health }, { x: "other", y: other}
+]
 
     return (
+
+      <div>
+
+      <Navbar></Navbar>
         <Grid container >
         <Grid item xs={6}> 
         <DonutGraph monthlyUserExpenses={monthlyUserExpenses} />
@@ -57,7 +77,7 @@ const Optimize = () => {
           2
         </Grid>
    </Grid>
-
+</div>
     )
 
 }
