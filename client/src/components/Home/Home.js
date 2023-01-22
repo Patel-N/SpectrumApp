@@ -25,22 +25,12 @@ const Home = () => {
   return (
         <Grow in>
             <Container> 
-            <Grid item container direction="column" xs spacing={2}>
-            <Grid container direction="row" spacing={2}>
+            <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">
+            <Grid container direction="row" spacing={2} justifyContent="center" alignItems="center">
                     
-                    <Grid item container direction="column" xs spacing={2}>
-                        <Grid item xs>
-                                <Grid container spacing={0}   justifyContent="center" alignItems="center">
-                            <div className={classes.container} >Your Monthly Budget</div>
-                            </Grid>
-                            <Grid container spacing={0}   justifyContent="center" alignItems="center">
-                            <img className={classes.image} src={area} alt="chart" height={260}/>
-                            </Grid>
-                            </Grid>
-                            
-                        <Grid item xs>
-                        <hr/>
-                            <Grid item container direction="column" xs spacing={2}>
+                    <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">
+                    
+                            <Grid item container direction="column" xs spacing={4} justifyContent="center" alignItems="center">
                             <Grid item xs>
                                 <Grid container spacing={0}   justifyContent="center" alignItems="center">
                             <div className={classes.container} >Your Trends</div>
@@ -50,11 +40,15 @@ const Home = () => {
                             </Grid>
                             </Grid>
                         </Grid>
-                        </Grid>
                     </Grid>
                     <Grid item xs>
-                    <Grid item container direction="column" xs spacing={2}>
-                            <Grid item xs>
+                    <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                            <Grid item xs >
                                 <Grid container spacing={0}   justifyContent="center" alignItems="center">
                             <div className={classes.container} >Your Spendings</div>
                             </Grid>

@@ -22,7 +22,13 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import GroupsIcon from '@mui/icons-material/Groups';
 import Home from '../Home/Home'
+import Optimize from '../Optimize/Optimize'
+import Profiles from '../Profiles/Profiles'
+import { useNavigate } from "react-router-dom";
 const drawerWidth = 240;
+
+
+var comp = 0;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -42,6 +48,10 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     }),
   }),
 );
+
+const handleClick = (index) => {
+    console.log(index);
+  };
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -72,6 +82,21 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+
+  function handleClick(index) {
+    if(index == 0){
+        navigate("/");
+    }
+    else if (index == 1){
+        navigate("/optimize");
+    }
+    else if( index == 2){
+        navigate("/profiles");
+    }
+  
+  }
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -120,10 +145,10 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Dashboard', 'Optomize', 'Profiles'].map((text, index) => (
+          {['Dashboard', 'Optimize', 'Profiles'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
+                <ListItemIcon onClick={() => handleClick(index)}> 
                 {(() => {
                         if (index == 0) {
                         return (
@@ -131,7 +156,7 @@ export default function PersistentDrawerLeft() {
                         )
                         } else if (index == 1) {
                         return (
-                            <DonutLargeIcon />
+                                <DonutLargeIcon />
                         )
                         } else {
                         return (
@@ -140,17 +165,14 @@ export default function PersistentDrawerLeft() {
                         }
                     })()}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={text} onClick={() => handleClick(index)}  />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
        
       </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-            <Home></Home>
-      </Main>
+      
     </Box>
   );
 }
