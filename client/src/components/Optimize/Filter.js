@@ -86,6 +86,7 @@ function calculateAverages( userList) {
     for(let i = 0; i < userList.length; i++){
         let oId = userList[i].id;
         dispatch(getUserExpenseById(oId));
+        break;
     }
 
 

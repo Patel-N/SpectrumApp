@@ -10,7 +10,9 @@
             localStorage.setItem('userExpenses', JSON.stringify({ ...action?.data}));
             return { ...state, userExpenses: action?.data };
         case 'FETCH_USER_EXPENSES_BY_ID':
-            return action.payload.data;
+            console.log(action);
+            localStorage.setItem('expenseAvg', JSON.stringify({ ...action?.data}));
+            return action.payload;
         default:
             return users;
        
