@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Grid} from  '@material-ui/core'
+import {Grid, Table, TableContainer, TableBody, TableCell, TableRow, TableHead} from  '@material-ui/core'
 import DonutGraph from '../../components/Graphs/DonutGraph'
 import Button from "@material-ui/core/Button";
 import {
@@ -13,6 +13,8 @@ import { getUsers } from '../../actions/users';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Navbar from "../Navbar/Navbar.js"
+import { TabUnstyled } from '@mui/base';
+
 // const [queryInfo, setQueryInfo] = useState({ salary:0, country: '', province: ''});
 
 const Optimize = () => {
@@ -61,8 +63,9 @@ const currentUserExpensesHousingAverage = (currentUserExpenses.housing.mortgage 
     const currentUserExpensesSubscriptionsAverage = (currentUserExpenses.subscriptions.music + currentUserExpenses.subscriptions.gym + currentUserExpenses.subscriptions.others);
     const currentUserExpensesHealthAverage = (currentUserExpenses.health.prescriptions + currentUserExpenses.health.appointments);
     const currentUserExpensesOtherAverage = currentUserExpenses.other;
+//YOURES^^^^
 
-
+//RECOMMENDED
 const avg_aest = Math.min(targetedAverage.aesthetics.average,currentUserExpensesAestheticsAverage);
 const communications =  Math.min(targetedAverage.communications.average,currentUserExpensesCommunicationsAverage);
 const food =  Math.min(targetedAverage.food.average,currentUserExpensesFoodAverage);
@@ -81,7 +84,15 @@ const saved = Math.floor( Math.abs( currentUserExpensesAestheticsAverage - avg_a
  Math.abs( currentUserExpensesSubscriptionsAverage - subscriptions)+
  Math.abs( currentUserExpensesTransportAverage - transport));
 
-
+ //SAVED
+ const avg_aest_saved =  currentUserExpensesAestheticsAverage - avg_aest;
+ const avg_aest_comm =  currentUserExpensesCommunicationsAverage - communications;
+ const avg_aest_food =  currentUserExpensesFoodAverage - food;
+ const avg_aest_health =  currentUserExpensesHealthAverage - health;
+ const avg_aest_housing =  currentUserExpensesHousingAverage - housing;
+ const avg_aest_other=  currentUserExpensesOtherAverage - other;
+ const avg_aest_subscriptions =  currentUserExpensesSubscriptionsAverage - subscriptions;
+ const avg_aest_transport=  currentUserExpensesTransportAverage - transport;
 
  const monthlyUserExpenses = [
   { x: "housing", y: currentUserExpensesHousingAverage }, { x: "communications", y: currentUserExpensesCommunicationsAverage },
@@ -130,14 +141,70 @@ const optimizedUserExpenses = [
           <Grid container spacing={0} justifyContent="center" alignItems="center">
           <h2> Money Saved: {saved}</h2>
                                 </Grid>
-          <table>
+          <TableContainer overflow-y = 'scrolls' sx={{maxHeight: '200px'}}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Spending Category</TableCell>
+                <TableCell>Current Spending</TableCell>
+                <TableCell>Recommended Spending</TableCell>
+                <TableCell>Average Saved</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>Housing</TableCell>
+                <TableCell>{currentUserExpensesHousingAverage}</TableCell>
+                <TableCell>{housing}</TableCell>
+                <TableCell>{Math.floor(avg_aest_housing)}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Communications</TableCell>
+                <TableCell>{currentUserExpensesCommunicationsAverage}</TableCell>
+                <TableCell>{communications}</TableCell>
+                <TableCell>{Math.floor(avg_aest_comm)}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Transport</TableCell>
+                <TableCell>{currentUserExpensesTransportAverage}</TableCell>
+                <TableCell>{transport}</TableCell>
+                <TableCell>{Math.floor(avg_aest_transport)}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Food</TableCell>
+                <TableCell>{currentUserExpensesFoodAverage}</TableCell>
+                <TableCell>{food}</TableCell>
+                <TableCell>{Math.floor(avg_aest_food)}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Aesthetics</TableCell>
+                <TableCell>{currentUserExpensesAestheticsAverage}</TableCell>
+                <TableCell>{avg_aest}</TableCell>
+                <TableCell>{Math.floor(avg_aest_saved)}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Subscriptions</TableCell>
+                <TableCell>{currentUserExpensesSubscriptionsAverage}</TableCell>
+                <TableCell>{subscriptions}</TableCell>
+                <TableCell>{Math.floor(avg_aest_subscriptions)}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Health</TableCell>
+                <TableCell>{currentUserExpensesHealthAverage}</TableCell>
+                <TableCell>{health}</TableCell>
+                <TableCell>{Math.floor(avg_aest_health)}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Other</TableCell>
+                <TableCell>{currentUserExpensesOtherAverage}</TableCell>
+                <TableCell>{other}</TableCell>
+                <TableCell>{Math.floor(avg_aest_other)}</TableCell>
+              </TableRow>
+            </TableBody>
+            </TableContainer>
 
-
-            
-          </table>
+           
         </Grid>
 ):(
-
 
   <Grid>Click Optimization </Grid>
 )
