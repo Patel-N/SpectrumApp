@@ -15,9 +15,7 @@ const App = () => {
       <Route path="/login">
         <Auth />
       </Route>
-      <PrivateRoute path="/">
-        <Navbar />
-      </PrivateRoute>
+      <Route path='/' exact component={Navbar}/>
     </BrowserRouter>
   );
 };

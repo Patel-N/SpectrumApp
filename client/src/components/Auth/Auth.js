@@ -3,6 +3,7 @@ import './styles.scss';
 import { signin } from '../../actions/auth';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const Auth = () => {
 
@@ -12,33 +13,34 @@ const Auth = () => {
   const history = useHistory();
 
   const handleChange = (e) =>{
+    console.log(e.target.name);
     setFormData({ ...formData, [e.target.name] : e.target.value})
   }
 
-  const handleLogin = (e) => {
-    console.log(formData);
-    dispatch(signin, (formData, history));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signin(formData, history));
   }
   
   return (
     <section id="entry-page">
 
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handleSubmit}>
       <h2>Welcome Back!</h2>
       <fieldset>
         <legend>Log In</legend>
         <ul>
           <li>
-            <label for="Email">Email:</label>
-            <input type="text" id="username" required handleChange={handleChange} />
+            <label>Email:</label>
+            <input type="text" name="email" required onChange={handleChange} />
           </li>
           <li>
-            <label for="password">Password:</label>
-            <input type="password" id="password" required handleChange={handleChange}/>
+            <label>Password:</label>
+            <input type="password" name="password" required onChange={handleChange}/>
           </li>
         </ul>
       </fieldset>
-      <button type='submit'>Login</button>
+      <Button type='submit'>Login</Button>
     </form>
 
     </section>
