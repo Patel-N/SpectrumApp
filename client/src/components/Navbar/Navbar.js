@@ -153,7 +153,7 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Dashboard', 'Optimize', 'Profiles', 'Averages'].map((text, index) => (
+          {['Dashboard', 'Optimize', 'Profiles'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon onClick={() => handleClick(index)}> 
