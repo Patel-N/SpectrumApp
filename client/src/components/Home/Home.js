@@ -8,6 +8,7 @@ import DonutGraph from '../../components/Graphs/DonutGraph'
 import CompareGraph from '../../components/Graphs/CompareGraph'
 import Navbar from "../Navbar/Navbar.js"
 
+import { getFilteredUsers } from '../Optimize/Filter';
 import clsx from "clsx";
 import { getUsers, getUserExpenses } from '../../actions/users';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,6 +30,8 @@ const Home = () => {
 
   // basically allows us to extract data from Redux store state, using selector function
   const users = useSelector((state) => state.users);
+  users.shift();
+  const targetedAverage = getFilteredUsers(users);
 
     const data = ["Rent", "Transport", "Your Mom",];
 
