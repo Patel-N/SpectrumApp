@@ -22,7 +22,8 @@ export default function DonutGraph({monthlyUserExpenses}) {
   const fillColor = "gold";
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <div style={{textAlign:"center"}} sx={{ position : ' relative',left: '50%'}}>
+    <Box  >
       <svg viewBox="0 0 450 350">
         <V.VictorySharedEvents
           events={[{
@@ -52,10 +53,10 @@ export default function DonutGraph({monthlyUserExpenses}) {
         >
           <g transform={"translate(0, -75)"}>
             <V.VictoryPie name="pie"
-              width={250}
-              height={400}
+              width={360}
+              height={450}
               standalone={false}
-              style={{ labels: { fontSize: 9, padding: 10 } }}
+              style={{ labels: { fontSize: 9, padding: 15 } }}
               data={monthlyUserExpenses}
               colorScale={["#21DAFF","#312F2F","#FAA916","#5449CC","#FF90D3","#87D68D","#F06543","#9d75cbff"]}
               innerRadius={25}
@@ -96,6 +97,7 @@ export default function DonutGraph({monthlyUserExpenses}) {
            
           </V.VictoryChart> */}
     </Box>
+    </div>
   );
 }
 
