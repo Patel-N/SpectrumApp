@@ -1,195 +1,118 @@
-//usual reset stuff
-*,
-*:before,
-*:after,
-ul,
-li,
-a,
-button,
-input,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-img,
-image,
-svg,
-path,
-g,
-canvas {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	background-color: transparent;
-	border: none;
-	text-decoration: none;
-	font-family: 'Roboto';
-	user-select: none;
-	list-style: none;
-	position: relative;
-}
+@import url('https://fonts.googleapis.com/css?family=Jura:400');
+* { font-family: Jura, Arial; font-weight: 400; }
+body { margin: 0; padding: 0; }
+h1,h2,h3,h4,h5,h6,p { margin: 0; }
 
-@mixin size($width: inherit, $height: inherit) {
-  width: $width;
-  height: $height;
-}
-
-@mixin flex($align, $justify, $direction: row) {
-  display: flex;
-  align-items: $align;
-  justify-content: $justify;
-  flex-direction: $direction;
-}
-
-@mixin border-radius($topLeft:50%, $topRight:50%, $botLeft:50%, $botRight:50%) {
-  border-top-left-radius: $topLeft;
-  border-top-right-radius: $topRight;
-  border-bottom-left-radius: $botLeft;
-  border-bottom-right-radius: $botRight;
-}
-
-$deepBlue-5: #f1f3f4;
-$deepBlue-100: #000C2F;
-$blue-5: #F2F8FF;
-$blue-80: #3394FF;
-$blue-100: #007AFF;
-$login-container-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
-$button-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.12);
-
-.html, body {
-  background-color: #FAFAFA;
-  margin: 0;
-  padding: 0;
-}
-
-.button {
-  @include flex(center, center);
-  box-shadow: $button-shadow;
-  background-color: $blue-5;
-  text-transform: capitalize;
-  cursor: pointer;
-  
-  &:hover, &:focus {
-    transition: 0.15s ease-in-out;
+section#entry-page {
+  display: grid;
+  grid-template-columns: 1fr minmax(200px,400px) 1fr;
+  grid-template-rows: 1fr minmax(auto,1fr) 1fr;
+  grid-gap: 10px;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(-45deg, #FFFFFF, #84DCC6, #A5FFD6, #FFA69E);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  box-sizing: border-box;
+  form {
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    grid-gap: 10px;
+    margin: auto 0;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    box-shadow: 0 32px 64px rgba(0,0,0,0.2);
+    h2 {
+      margin-bottom: 5px;
+      text-align: center;
+      text-shadow: 0 4px 16px #fff;
+      font-size: 30px;
+      font-weight: 100;
+    }
+    fieldset {
+      margin: 0;
+      background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      legend {
+        padding: 5px;
+        background-color: #fff;
+        border-radius: 5px;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        li {
+          display: grid;
+          align-items: center;
+          margin: 10px;
+          a {
+            color: #02c;
+          }
+          em {
+            grid-column: span 2;
+            text-align: center;
+            padding: 5px;
+          }
+          label {
+            text-align: left;
+            padding-bottom: 2px;
+          }
+          input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            &:hover {
+              border: 1px solid #aaf;
+            }
+          }
+        }
+      }
+    }
+    button {
+      padding: 10px;
+      border:1px solid rgba(0,0,0,0);
+      border-radius: 5px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      &:hover {
+        background-color: #eef;
+        border: 1px solid #aaf;
+      }
+    }
   }
 }
-
-.login-container {
-  @include size(400px, auto);
-  @include flex(center, center, column);
-  
-  margin: 0 auto;
-  background-color: white;
-  box-shadow: $login-container-shadow;
-  overflow: hidden;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  
-  .title {
-    text-transform: capitalize;
-    font-size: 1.6em;
-    font-weight: 300;
-    padding: 60px 0;
-    padding-bottom: 10px;
-  }
-  
-  .login-button {
-    @include border-radius(5px, 5px, 5px, 5px);
-    width: 60%;
-    padding: 20px 15px;
-    background-color: $blue-100;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    margin: 40px 0;
-    
-    &:hover, &:focus {
-      box-shadow: 0px 3px 20px 3px rgba($blue-100,0.3);
-      background-color: $blue-100;
+@media only screen and (min-width: 420px) {
+  form {
+    h2 {
+      font-size: 40px;
+    }
+    fieldset {
+      ul {
+        li {
+          grid-template-columns: 100px 1fr;
+          label {
+            padding-right: 10px;
+            padding-bottom: 0;
+            text-align: right !important;
+          }
+        }
+      }
     }
   }
 }
 
-.fluid-input {
-  @include size(80%, 50px);
-  max-width: 450px;
-  position: relative;
-  
-  &-bg {
-    @include size(calc(100% - 10%), 100%);
-    @include flex(center, flex-start);
-    position: absolute;
-    left: 5%;
-    top: 0;
-    color: $blue-100;
-    font-weight: 400;
-    font-size: 0.9em;
-    transition: 0.3s ease-in-out;
-    text-transform: capitalize;
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%
   }
-  
-  &-holder {
-    @include size(100%, 100%);
-    position: absolute;
-    top: 0;
-    left: 0;
-    //overflow: hidden;
-    @include border-radius(5px, 5px, 5px, 5px);
-    will-change: transform, box-shadow;
-    transition: 0.2s ease-in-out;
-    background-color: $deepBlue-5;
+  50% {
+    background-position: 100% 50%
   }
-  &-input {
-    @include size();
-    @include border-radius(5px, 5px, 5px, 5px);
-    background-color: $deepBlue-5;
-    font-size: 1.05em;
-    padding: 0 5%;
-    
-    &:focus {
-      outline: None;
-    }
-  }
-  
-  &-label {
-    @include size(calc(100% - 10%), 100%);
-    @include flex(center, start);
-    position: absolute;
-    font-size: 1em;
-    left: 5%;
-    top: 0;
-    color: $blue-100;
-    font-weight: 400;
-    text-transform: capitalize;
-    pointer-events: none;
-    transition: 
-      transform 0.2s ease-in-out,
-      font-size 0.2s 0.15s ease-in-out;
-    will-change: transform, font-size;
-  }
-  
-  &--focus & {
-    &-holder {
-      box-shadow: 0px 5px 20px 0px rgba($deepBlue-100,0.3);
-    }
-    
-    &-bg {
-      transform: translateY(-40px);
-      transition: 0.2s 0.2s ease-in-out;
-    }
-    
-    &-label {
-      transform: translateY(-40px);
-    }
-  }
-  
-  &--open & {
-    &-label {
-      transform: translateY(-40px);
-    }
+  100% {
+    background-position: 0% 50%
   }
 }
