@@ -93,9 +93,6 @@ export default function PersistentDrawerLeft() {
     else if( index == 2){
         navigate("/profiles");
     }
-    else if( index == 3){
-      navigate("/user");
-  }
   
   }
 
