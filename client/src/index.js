@@ -12,6 +12,8 @@ import App from './App';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
+import './index.css'
+
 
 ReactDOM.render(
 <Provider store = {store}>
