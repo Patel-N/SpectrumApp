@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Grid} from  '@material-ui/core'
 import DonutGraph from '../../components/Graphs/DonutGraph'
 import Button from "@material-ui/core/Button";
@@ -8,6 +8,12 @@ import {
   ThemeProvider
 } from "@material-ui/core/styles";
 import { lightGreen, blue, purple, pink } from "@material-ui/core/colors";
+import {useDispatch} from 'react-redux';
+import { getFilteredUsers } from './Filter';
+import { getUsers } from '../../actions/users';
+import { useSelector } from 'react-redux';
+
+// const [queryInfo, setQueryInfo] = useState({ salary:0, country: '', province: ''});
 
 const Optimize = () => {
     const monthlyUserExpenses = [
@@ -28,6 +34,16 @@ const Optimize = () => {
         console.log('e');
       
       }
+
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(getUsers());
+    }, [dispatch]);
+
+    const users = useSelector((state) => state.users);
+
+    const filteredUsers = getFilteredUsers(users);
 
     return (
         <Grid container >

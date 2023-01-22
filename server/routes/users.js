@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers, getUserExpenses } from '../controllers/users.js';
+import { getUsers, getUserExpenses, getUserExpensesById } from '../controllers/users.js';
 import { signin } from '../controllers/auth.js';
 
 // sets up an instance of our router 
@@ -14,5 +14,7 @@ export default router;
 router.get('/', getUsers);
 
 router.post('/expenses', getUserExpenses);
+
+router.post('/expenses/id', getUserExpensesById);
 
 router.post('/signin', signin);
