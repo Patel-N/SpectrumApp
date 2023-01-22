@@ -14,8 +14,6 @@ export const getUsers = async (req, res) => {
         res.status(404).json({message: error.message});
         
     }
-   
- 
 }
 
 export const getUserExpenses = async (req, res) => {
@@ -33,6 +31,23 @@ export const getUserExpenses = async (req, res) => {
         res.status(404).json({message: error.message});
         
     }
-   
- 
+}
+
+export const getUserExpensesById = async (req, res) => {
+    try {
+        console.log('Get user expenses by _id')
+
+        const {_id} = req.body;
+
+        console.log(_id);
+        //Get all the user expenses based on the schema
+        const userExpenses = await Expenses.findOne({user_id:_id});
+        console.log(userExpenses);
+        //response 200
+        res.status(200).json({result:userExpenses});
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+
+
 }
