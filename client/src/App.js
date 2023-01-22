@@ -9,6 +9,7 @@ import Home from './components/Home/Home.js';
 import { ProSidebarProvider } from "react-pro-sidebar";
 import Optimize from './components/Optimize/Optimize'
 import Profiles from './components/Profiles/Profiles'
+import User from './components/User/User'
 
 
 const App =  () => {
@@ -25,6 +26,7 @@ const App =  () => {
                  <Route path="/" exact element={<Home/>}/>
                  <Route path="/optimize" exact element={<Optimize/>}/>
                  <Route path="/profiles" exact element={<Profiles/>}/>
+                 <Route path="/user" exact element={<User/>}/>
              </Routes>
         </Container>
      </BrowserRouter>
