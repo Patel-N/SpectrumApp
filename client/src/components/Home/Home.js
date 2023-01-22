@@ -19,21 +19,20 @@ const Home = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const currentUser = JSON.parse(localStorage.getItem("profile"));
-    const [userId, setUserId] = useState({id:currentUser.result.id});
-       
+    const currentUser = JSON.parse(localStorage.getItem("profile")).result;
+    const currentUserExpenses = JSON.parse(localStorage.getItem("userExpenses")).result;
+    const [userId, setUserId] = useState({ id: currentUser.id });
+
 
     useEffect(() => {
-      dispatch(getUsers());
-      dispatch(getUserExpenses(userId))
+        dispatch(getUsers());
+        dispatch(getUserExpenses(userId))
     }, [dispatch]);
 
-  // basically allows us to extract data from Redux store state, using selector function
-  const users = useSelector((state) => state.users);
-  users.shift();
-  const targetedAverage = getFilteredUsers(users);
-
-    const data = ["Rent", "Transport", "Your Mom",];
+    // basically allows us to extract data from Redux store state, using selector function
+    const users = useSelector((state) => state.users);
+    users.shift();
+    const targetedAverage = getFilteredUsers(users);
 
     const Demo = ({ items }) => (
         <ul>
@@ -45,29 +44,42 @@ const Home = () => {
         </ul>
     );
 
+    const currentUserExpensesHousingAverage = (currentUserExpenses.housing.mortgage + currentUserExpenses.housing.rent + currentUserExpenses.housing.utilities);
+    const currentUserExpensesCommunicationsAverage = (currentUserExpenses.communications.internet + currentUserExpenses.communications.cable + currentUserExpenses.communications.cell);
+    const currentUserExpensesTransportAverage = (currentUserExpenses.transport.car + currentUserExpenses.transport.public);
+    const currentUserExpensesFoodAverage = (currentUserExpenses.food.restaurants + currentUserExpenses.food.supermarket);
+    const currentUserExpensesAestheticsAverage = (currentUserExpenses.aesthetics.body + currentUserExpenses.aesthetics.clothes);
+    const currentUserExpensesSubscriptionsAverage = (currentUserExpenses.subscriptions.music + currentUserExpenses.subscriptions.gym + currentUserExpenses.subscriptions.others);
+    const currentUserExpensesHealthAverage = (currentUserExpenses.health.prescriptions + currentUserExpenses.health.appointments);
+    const currentUserExpensesOtherAverage = currentUserExpenses.other;
+
     const monthlyUserExpenses = [
-        { x: "housing", y: 1 }, { x: "communications", y: 4 },
-        { x: "transport", y: 5 }, { x: "food", y: 7 },
-        { x: "aesthetics", y: 9 }, { x: "subscriptions", y: 11 },
-        { x: "health", y: 13 }, { x: "other", y: 14 }
+        { x: "housing", y: currentUserExpensesHousingAverage }, 
+        { x: "communications", y:currentUserExpensesCommunicationsAverage},
+        { x: "transport", y: currentUserExpensesTransportAverage }, 
+        { x: "food", y: currentUserExpensesFoodAverage },
+        { x: "aesthetics", y: currentUserExpensesAestheticsAverage }, 
+        { x: "subscriptions", y:currentUserExpensesSubscriptionsAverage},
+        { x: "health", y: currentUserExpensesHealthAverage },
+        { x: "other", y: currentUserExpensesOtherAverage}
     ]
 
     const monthlyAverageExpenses = [
-        { x: "housing", y: 2 }, { x: "communications", y: 3 },
-        { x: "transport", y: 6 }, { x: "food", y: 2 },
-        { x: "aesthetics", y: 11 }, { x: "subscriptions", y: 6 },
-        { x: "health", y: 13 }, { x: "other", y: 12 }
+        { x: "housing", y: targetedAverage.housing.average }, { x: "communications", y: targetedAverage.communications.average },
+        { x: "transport", y: targetedAverage.transport.average }, { x: "food", y: targetedAverage.food.average },
+        { x: "aesthetics", y: targetedAverage.aesthetics.average }, { x: "subscriptions", y: targetedAverage.subscriptions.average },
+        { x: "health", y: targetedAverage.health.average }, { x: "other", y: targetedAverage.other.average }
     ]
 
     return (
 
         <div>
 
-        <Navbar></Navbar>
+            <Navbar></Navbar>
 
-        <Grow in>
-            <Container> 
-            {/* <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">
+            <Grow in>
+                <Container>
+                    {/* <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">
             <Grid container direction="row" spacing={2} justifyContent="center" alignItems="center">
                     
                     <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">
@@ -133,29 +145,29 @@ const Home = () => {
                 <br/><br/><br/><br/><br/> */}
 
                     <Grid container >
-                            <Grid item xs={6}> 
+                        <Grid item xs={6}>
                             <Grid container spacing={0} justifyContent="center" alignItems="center">
-                                    <div className={classes.container} >Your Spendings</div>
-                                </Grid>
+                                <div className={classes.container} >Your Spendings</div>
+                            </Grid>
                             <DonutGraph monthlyUserExpenses={monthlyUserExpenses} />
                             <Grid direction="column" item container xs spacing={2} justifyContent="center" alignItems="center">
-                            
+
                             </Grid>
-                            </Grid>
-                            
-                            <Grid item xs={6}>
+                        </Grid>
+
+                        <Grid item xs={6}>
                             <Grid container spacing={0} justifyContent="center" alignItems="center">
-                                    <div className={classes.container} >Your Spectrum Averages</div>
-                                </Grid>
-                            <CompareGraph monthlyUserExpenses={monthlyUserExpenses} monthlyAverageExpenses={monthlyAverageExpenses} />
+                                <div className={classes.container} >Your Spectrum Averages</div>
                             </Grid>
+                            <CompareGraph monthlyUserExpenses={monthlyUserExpenses} monthlyAverageExpenses={monthlyAverageExpenses} />
+                        </Grid>
                     </Grid>
 
-                
-            </Container>
 
-        </Grow>
-    </div>
+                </Container>
+
+            </Grow>
+        </div>
 
     );
 }
