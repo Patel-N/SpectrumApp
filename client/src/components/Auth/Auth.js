@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './styles.scss';
 import { signin } from '../../actions/auth';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
 const Auth = () => {
@@ -10,7 +10,7 @@ const Auth = () => {
   const initialState = ({ email: '',password: '' });
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = (e) =>{
     console.log(e.target.name);
@@ -20,7 +20,7 @@ const Auth = () => {
   const handleSubmit = (e) => {
     console.log(formData);
     e.preventDefault();
-    dispatch(signin(formData, history));
+    dispatch(signin(formData, navigate));
   }
   
   return (

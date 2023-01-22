@@ -1,4 +1,4 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Navigate  } from "react-router-dom";
 
 const fakeAuth = {
     isAuthenticated: false,
@@ -20,7 +20,7 @@ function PrivateRoute({ children, ...rest }) {
         return fakeAuth.isAuthenticated === true ? (
           children
         ) : (
-          <Redirect to="/login" />
+          { component: () => <Navigate to="/login" /> }
         );
       }}
     />
