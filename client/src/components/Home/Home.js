@@ -6,7 +6,9 @@ import bars from '../../images/bars.png';
 import useStyles from './styles';
 import DonutGraph from '../../components/Graphs/DonutGraph'
 import CompareGraph from '../../components/Graphs/CompareGraph'
+import Navbar from "../Navbar/Navbar.js"
 
+import { getFilteredUsers } from '../Optimize/Filter';
 import clsx from "clsx";
 import { getUsers, getUserExpenses } from '../../actions/users';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,11 +19,9 @@ const Home = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-
     const currentUser = JSON.parse(localStorage.getItem("profile"));
     const [userId, setUserId] = useState({id:currentUser.result.id});
        
-
 
     useEffect(() => {
       dispatch(getUsers());
@@ -29,8 +29,9 @@ const Home = () => {
     }, [dispatch]);
 
   // basically allows us to extract data from Redux store state, using selector function
-  const users = useSelector((state) => state.users)
-  console.log(users)
+  const users = useSelector((state) => state.users);
+  users.shift();
+  const targetedAverage = getFilteredUsers(users);
 
     const data = ["Rent", "Transport", "Your Mom",];
 
@@ -61,6 +62,9 @@ const Home = () => {
     return (
 
         <div>
+
+        <Navbar></Navbar>
+
         <Grow in>
             <Container> 
             {/* <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">

@@ -85,7 +85,7 @@ export default function PersistentDrawerLeft() {
 
   function handleClick(index) {
     if(index == 0){
-        navigate("/");
+        navigate('/dashboard');
     }
     else if (index == 1){
         navigate("/optimize");
