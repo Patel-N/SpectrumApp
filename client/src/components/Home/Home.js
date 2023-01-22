@@ -5,22 +5,29 @@ import area from '../../images/area.png';
 import bars from '../../images/bars.png';
 import useStyles from './styles';
 import clsx from "clsx";
-import { getUsers } from '../../actions/users';
+import { getUsers, getUserExpenses } from '../../actions/users';
 import { useDispatch, useSelector } from 'react-redux';
+
+
 const Home = () => {
 
     const classes = useStyles();
-
     const dispatch = useDispatch();
+
+
+    const currentUser = JSON.parse(localStorage.getItem("profile"));
+    const [userId, setUserId] = useState({id:currentUser.result.id});
+
 
 
     useEffect(() => {
       dispatch(getUsers());
-  }, [dispatch]);
+      dispatch(getUserExpenses(userId))
+    }, [dispatch]);
 
   // basically allows us to extract data from Redux store state, using selector function
   const users = useSelector((state) => state.users)
-  console.log(users)
+//   console.log(users)
 
     const data = ["Rent", "Transport", "Your Mom", ];
 
