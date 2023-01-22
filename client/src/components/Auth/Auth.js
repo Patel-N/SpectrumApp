@@ -18,6 +18,7 @@ const Auth = () => {
   }
 
   const handleSubmit = (e) => {
+    console.log(formData);
     e.preventDefault();
     dispatch(signin(formData, navigate));
   }
