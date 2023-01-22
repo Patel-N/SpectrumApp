@@ -25,14 +25,24 @@ const Optimize = () => {
       });
     
       //OPTIMIZATION
-      function handleClick() {
-        console.log('e');
       
-      }
 
     const dispatch = useDispatch();
 
+    const [showOptimizationBool, setshowOptimizationBool] = useState(false);
+
+    function handleClick() {
+
+      if(showOptimizationBool ==false){
+      setshowOptimizationBool(true);
+      } else {
+
+        setshowOptimizationBool(false);
+
+
+      }
     
+    } 
     
     useEffect(() => {
         dispatch(getUsers());
@@ -62,16 +72,16 @@ const other =  Math.min(targetedAverage.other.average, currentUserExpensesOtherA
 const subscriptions =  Math.min(targetedAverage.subscriptions.average, currentUserExpensesSubscriptionsAverage);
 const transport =  Math.min(targetedAverage.transport.average,currentUserExpensesTransportAverage);
 
-const saved = Math.abs( currentUserExpensesAestheticsAverage - avg_aest) + 
+const saved = Math.floor( Math.abs( currentUserExpensesAestheticsAverage - avg_aest) + 
  Math.abs( currentUserExpensesCommunicationsAverage - communications)+
  Math.abs( currentUserExpensesFoodAverage - food)+
  Math.abs( currentUserExpensesHealthAverage - health)+
  Math.abs( currentUserExpensesHousingAverage - housing)+
  Math.abs( currentUserExpensesOtherAverage - other)+
  Math.abs( currentUserExpensesSubscriptionsAverage - subscriptions)+
- Math.abs( currentUserExpensesTransportAverage - transport);
+ Math.abs( currentUserExpensesTransportAverage - transport));
 
- console.log(saved);
+
 
  const monthlyUserExpenses = [
   { x: "housing", y: currentUserExpensesHousingAverage }, { x: "communications", y: currentUserExpensesCommunicationsAverage },
@@ -80,12 +90,13 @@ const saved = Math.abs( currentUserExpensesAestheticsAverage - avg_aest) +
   { x: "health", y: currentUserExpensesHealthAverage }, { x: "other", y: currentUserExpensesOtherAverage}
 ]
 
-const monthlyAverageExpenses = [
-  { x: "housing", y: targetedAverage.housing.average }, { x: "communications", y: targetedAverage.communications.average },
-  { x: "transport", y: targetedAverage.transport.average }, { x: "food", y: targetedAverage.food.average },
-  { x: "aesthetics", y: targetedAverage.aesthetics.average }, { x: "subscriptions", y: targetedAverage.subscriptions.average },
-  { x: "health", y: targetedAverage.health.average }, { x: "other", y: targetedAverage.other.average }
+const optimizedUserExpenses = [
+  { x: "housing", y: housing }, { x: "communications", y: communications },
+  { x: "transport", y: transport }, { x: "food", y: food },
+  { x: "aesthetics", y: avg_aest }, { x: "subscriptions", y: subscriptions },
+  { x: "health", y: health }, { x: "other", y: other}
 ]
+
     return (
 
       <div>
@@ -97,6 +108,7 @@ const monthlyAverageExpenses = [
         <Grid container spacing={0} justifyContent="center" alignItems="center">
                                     <div>Your Spendings</div>
                                 </Grid>
+                                <br/>
         <DonutGraph monthlyUserExpenses={monthlyUserExpenses} />
         <Grid direction="column" item container xs spacing={2} justifyContent="center" alignItems="center">
         <Button color="primary" variant="contained"  onClick={() => handleClick()}  >
@@ -104,17 +116,33 @@ const monthlyAverageExpenses = [
           </Button>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-        <Grid item xs={6}> 
+
+{ showOptimizationBool ?(
+        <Grid item xs={6}          > 
         <Grid container spacing={0} justifyContent="center" alignItems="center">
                                     <div>Your Spectrum Recommendations</div>
                                 </Grid>
-        <DonutGraph monthlyUserExpenses={monthlyAverageExpenses} />
+                                <br/>
+        <DonutGraph monthlyUserExpenses={optimizedUserExpenses} />
         <Grid direction="column" item container xs spacing={2} justifyContent="center" alignItems="center">
         
           </Grid>
+          <Grid container spacing={0} justifyContent="center" alignItems="center">
+          <h2> Money Saved: {saved}</h2>
+                                </Grid>
+          <table>
+
+
+            
+          </table>
         </Grid>
-        </Grid>
+):(
+
+
+  <Grid>Click Optimization </Grid>
+)
+
+}
    </Grid>
 </div>
     )

@@ -142,9 +142,11 @@ const Home = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <br/><br/><br/><br/><br/> */}
+                <br/><br/> */}
 
+<br/><br/><br/><br/><br/>
                     <Grid container >
+                    <br/><br/><br/>
                         <Grid item xs={6}>
                             <Grid container spacing={0} justifyContent="center" alignItems="center">
                                 <div className={classes.container} >Your Spendings</div>
@@ -154,7 +156,6 @@ const Home = () => {
 
                             </Grid>
                         </Grid>
-
                         <Grid item xs={6}>
                             <Grid container spacing={0} justifyContent="center" alignItems="center">
                                 <div className={classes.container} >Your Spectrum Averages</div>
