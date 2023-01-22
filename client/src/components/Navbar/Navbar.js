@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import GroupsIcon from '@mui/icons-material/Groups';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Home from '../Home/Home'
 import Optimize from '../Optimize/Optimize'
 import Profiles from '../Profiles/Profiles'
@@ -92,6 +93,9 @@ export default function PersistentDrawerLeft() {
     else if( index == 2){
         navigate("/profiles");
     }
+    else if( index == 3){
+      navigate("/user");
+  }
   
   }
 
@@ -121,6 +125,8 @@ export default function PersistentDrawerLeft() {
           <Typography variant="h6" noWrap component="div">
             Spectrum
           </Typography>
+          <div className="d-flex justify-content-end"></div>
+          
         </Toolbar>
       </AppBar>
       <Drawer
@@ -168,7 +174,19 @@ export default function PersistentDrawerLeft() {
             </ListItem>
           ))}
         </List>
-       
+        <Divider />
+        <List>
+          {['User'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon onClick={() => handleClick('3')}> 
+                <AccountCircleIcon></AccountCircleIcon>
+                </ListItemIcon>
+                <ListItemText primary={text} onClick={() => handleClick('3')}  />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
       
     </Box>

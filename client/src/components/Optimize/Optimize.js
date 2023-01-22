@@ -36,6 +36,4 @@ const Optimize = () => {
 
 }
 
-
-
 export default Optimize
