@@ -4,6 +4,7 @@ var Schema = mongoose.Schema
 
 const Expenses = mongoose.model('expenses',
 new Schema({ 
+    user_id: Number,
     housing: {
         utilities: Number,
         mortgage: Number,
