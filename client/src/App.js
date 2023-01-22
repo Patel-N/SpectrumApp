@@ -10,6 +10,7 @@ import { ProSidebarProvider } from "react-pro-sidebar";
 import Optimize from './components/Optimize/Optimize'
 import Profiles from './components/Profiles/Profiles'
 import Profile from './components/Profiles/Profile'
+import Averages from './components/Averages/Averages'
 import User from './components/User/User'
 import ReactDOM from 'react-dom';
 
@@ -26,6 +27,7 @@ const App = () => {
                     <Route path="/optimize" exact element={<Optimize />} />
                     <Route path="/profiles" exact element={<Profiles />} />
                     <Route path="/profiles/:id" exact element={<Profile />} />
+                    <Route path="/averages" exact element={<Averages />} />
                     <Route path="/user" exact element={<User />} />
                 </Routes>
             </Container>

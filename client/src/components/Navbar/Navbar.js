@@ -20,6 +20,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import GroupsIcon from '@mui/icons-material/Groups';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import BalanceIcon from '@mui/icons-material/Balance';
 import Home from '../Home/Home'
 import Optimize from '../Optimize/Optimize'
 import Profiles from '../Profiles/Profiles'
@@ -94,6 +95,9 @@ export default function PersistentDrawerLeft() {
         navigate("/profiles");
     }
     else if( index == 3){
+      navigate("/averages");
+  }
+    else if( index == 4){
       navigate("/user");
   }
   
@@ -149,7 +153,7 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Dashboard', 'Optimize', 'Profiles'].map((text, index) => (
+          {['Dashboard', 'Optimize', 'Profiles', 'Averages'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon onClick={() => handleClick(index)}> 
@@ -162,10 +166,15 @@ export default function PersistentDrawerLeft() {
                         return (
                                 <DonutLargeIcon />
                         )
-                        } else {
+                        } else if(index ==2) {
                         return (
                             <GroupsIcon />
                         )
+                        }
+                        else{
+                          return(
+                            <BalanceIcon/>
+                          )
                         }
                     })()}
                 </ListItemIcon>
