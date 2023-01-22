@@ -92,18 +92,13 @@ const Profile = () => {
       <br /><br /><br /><br />
       <Grid container >
 
-        <Grid item xs={6}>
+        <Grid item xs={11}>
           <Grid container spacing={0} justifyContent="center" alignItems="center">
-            <h1> User {id}</h1>
+            <h1> Your data compared to User {id}</h1>
           </Grid>
-          <Grid direction="column" item container xs spacing={2} justifyContent="center" alignItems="center">
 
-          </Grid>
-        </Grid>
-
-        <Grid item xs={6}>
           <Grid container spacing={0} justifyContent="center" alignItems="center">
-            <div  >Your Spectrum Averages</div>
+            <div>Your Spectrum Averages</div>
           </Grid>
           <CompareGraph monthlyUserExpenses={monthlyUserExpenses} monthlyAverageExpenses={monthlyAverageExpenses} />
         </Grid>
