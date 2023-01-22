@@ -6,6 +6,7 @@ import bars from '../../images/bars.png';
 import useStyles from './styles';
 import DonutGraph from '../../components/Graphs/DonutGraph'
 import CompareGraph from '../../components/Graphs/CompareGraph'
+import Navbar from "../Navbar/Navbar.js"
 
 import clsx from "clsx";
 import { getUsers, getUserExpenses } from '../../actions/users';
@@ -58,6 +59,9 @@ const Home = () => {
     return (
 
         <div>
+
+        <Navbar></Navbar>
+
         <Grow in>
             <Container> 
             {/* <Grid item container direction="column" xs spacing={2} justifyContent="center" alignItems="center">
