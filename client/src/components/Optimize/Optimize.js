@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 
 
 
-const [queryInfo, setQueryInfo] = useState({ salary:0, country: '', province: ''});
+// const [queryInfo, setQueryInfo] = useState({ salary:0, country: '', province: ''});
 
 const Optimize = () => {
 
