@@ -1,15 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Grid} from  '@material-ui/core'
-import {useDispatch} from 'react-redux';
 
-
-
-
-// const [queryInfo, setQueryInfo] = useState({ salary:0, country: '', province: ''});
 
 const Optimize = () => {
-
-
 
     return (
         <Grid 
@@ -27,7 +20,5 @@ const Optimize = () => {
     )
 
 }
-
-
 
 export default Optimize
