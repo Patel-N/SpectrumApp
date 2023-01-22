@@ -1,11 +1,20 @@
 import React,  { useState, useEffect }  from 'react';
 import MUIDataTable from "mui-datatables";
-import {Container, Grow, Grid} from '@material-ui/core';
-
+import {Container, Grow, Grid, useControlled} from '@material-ui/core';
+import { useNavigate } from "react-router-dom";
 import { getUsers, getUserExpenses } from '../../actions/users';
 import { useDispatch, useSelector } from 'react-redux';
+import Profile from './Profile'
 
 const columns = [
+    {
+        name: "id",
+        label: "ID",
+        options: {
+         filter: false,
+         sort: false,
+        }
+       },
     {
      name: "first_name",
      label: "Name",
@@ -53,9 +62,15 @@ var data = [];
 
 
 const Profiles = () => {
-    const options = {
-        filterType: 'checkbox',
+    const options = {selectableRows: false ,
+        onRowClick: handleClick,
       };
+      const navigate = useNavigate();
+
+      function handleClick(profile) {
+        navigate('./'+profile[0])//GET ID to route
+      
+      }
       const dispatch = useDispatch();
       
       
@@ -87,7 +102,7 @@ const Profiles = () => {
             
                 <MUIDataTable
                 title={"Employee List"}
-                onCellClick={() => console.log("d")}
+                onRowClick={() =>navigate('./profiles/'+data.id)}
                 data={data}
                 columns={columns}
                 options={options}

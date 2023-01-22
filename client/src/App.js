@@ -9,6 +9,7 @@ import Home from './components/Home/Home.js';
 import { ProSidebarProvider } from "react-pro-sidebar";
 import Optimize from './components/Optimize/Optimize'
 import Profiles from './components/Profiles/Profiles'
+import Profile from './components/Profiles/Profile'
 import ReactDOM from 'react-dom';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
                     <Route path="/dashboard" exact element={<Home />} />
                     <Route path="/optimize" exact element={<Optimize />} />
                     <Route path="/profiles" exact element={<Profiles />} />
+                    <Route path="/profiles/:id" exact element={<Profile />} />
                 </Routes>
             </Container>
         </BrowserRouter>
