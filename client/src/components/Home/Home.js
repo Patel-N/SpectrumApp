@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import {Container, Grow, Grid} from '@material-ui/core';
-import { useDispatch } from 'react-redux';
 import chart from '../../images/donut-chart-1.png';
 import area from '../../images/area.png';
 import bars from '../../images/bars.png';
