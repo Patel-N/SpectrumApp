@@ -14,11 +14,9 @@ const Home = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-
     const currentUser = JSON.parse(localStorage.getItem("profile"));
     const [userId, setUserId] = useState({id:currentUser.result.id});
        
-
 
     useEffect(() => {
       dispatch(getUsers());
@@ -26,8 +24,7 @@ const Home = () => {
     }, [dispatch]);
 
   // basically allows us to extract data from Redux store state, using selector function
-  const users = useSelector((state) => state.users)
-  console.log(users)
+  const users = useSelector((state) => state.users);
 
     const data = ["Rent", "Transport", "Your Mom", ];
 

@@ -8,4 +8,6 @@ export const fetchUsers = () => API.get('/users');
 
 export const fetchUserExpenses = (userId) => API.post('/users/expenses', userId);
 
+export const fetchUserExpensesById = (objectId) => API.post('/users/expenses/id', objectId);
+
 export const signIn = (formData) => API.post('/users/signin', formData);
