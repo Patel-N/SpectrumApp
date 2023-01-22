@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { getUserExpenseById } from "../../actions/users";
+import { getUserExpenseById } from "../../actions/expenses";
 
 export function getFilteredUsers(allUsers) {
 
