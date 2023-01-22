@@ -11,6 +11,7 @@
             return { ...state, userExpenses: action?.data };
         case 'FETCH_USER_EXPENSES_BY_ID':
             console.log(action);
+            window.localStorage.removeItem('expenseAvg');
             localStorage.setItem('expenseAvg', JSON.stringify({ ...action?.data}));
             return action.payload;
         default:
