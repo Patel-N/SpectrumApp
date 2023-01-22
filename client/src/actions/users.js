@@ -18,3 +18,17 @@ export const getUsers = () => async (dispatch) => {
     }
 
 }
+
+export const getUserExpenses = (userId) => async (dispatch) => {
+
+    try {
+        console.log('here in actions =>', userId);
+        const { data } = await api.fetchUserExpenses(userId);
+        
+        console.log(data);
+
+        dispatch({type: "FETCH_USER_EXPENSES", data})
+    } catch (error) {
+        console.log(error.message)
+    }
+}
