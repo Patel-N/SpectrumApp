@@ -32,7 +32,7 @@ function calculateAverages( userList) {
                 rent: 0,
             }
         },
-        communication: {
+        communications: {
             average: 0,
             subcategory :{
                 internet: 0,
@@ -89,12 +89,22 @@ function calculateAverages( userList) {
         break;
     }
 
+    //this can be removed if we figure out how to get avg
+    const avgExpenses = JSON.parse(localStorage.getItem("expenseAvg")).result;
+    console.log(avgExpenses);
 
-    return null;
-}
+    targetedAverage.housing.average = (avgExpenses.housing.mortgage + avgExpenses.housing.rent + avgExpenses.housing.utilities);
+    targetedAverage.communications.average = (avgExpenses.communications.internet + avgExpenses.communications.cable + avgExpenses.communications.cell);
+    targetedAverage.transport.average = (avgExpenses.transport.car + avgExpenses.transport.public);
+    targetedAverage.food.average = (avgExpenses.food.restaurants + avgExpenses.food.supermarket);
+    targetedAverage.aesthetics.average = (avgExpenses.aesthetics.body + avgExpenses.aesthetics.clothes);
+    targetedAverage.subscriptions.average = (avgExpenses.subscriptions.music + avgExpenses.subscriptions.gym + avgExpenses.subscriptions.music + avgExpenses.subscriptions.others);
+    targetedAverage.health.average = (avgExpenses.health.prescriptions + avgExpenses.health.appointments);
+    targetedAverage.other.average = avgExpenses.other;
 
-function getAverage(expense){
+    console.log(targetedAverage);
 
 
 
+    return targetedAverage;
 }
