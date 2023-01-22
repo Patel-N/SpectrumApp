@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Grid} from  '@material-ui/core'
 import CompareGraph from '../../components/Graphs/CompareGraph'
 import { useParams } from "react-router-dom"
@@ -10,9 +10,20 @@ import {
 } from "@material-ui/core/styles";
 import { lightGreen, blue, purple, pink } from "@material-ui/core/colors";
 import Navbar from "../Navbar/Navbar.js"
+import { useDispatch } from 'react-redux';
+import { getUserExpenseById } from '../../actions/users';
 
 const Profile = () => {
+
     const { id } = useParams()
+    
+    const dispatch = useDispatch();
+
+    
+    dispatch(getUserExpenseById(id));
+    
+
+
     const monthlyUserExpenses = [
         { x: "housing", y: 1 }, { x: "communications", y: 4 },
         { x: "transport", y: 5 }, { x: "food", y: 7 },
