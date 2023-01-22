@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+import userRoutes from './routes/users.js';
 
 // * means more notes in google doc
 
@@ -25,8 +26,14 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
 
+
+
 // temporary port we will connect on
 const PORT = process.env.PORT || 5000;
+
+
+// using express middle ware set up starting path for all routes
+app.use('/users',userRoutes);
 
 // this function will return a promise and this is the reason wny we need a then and catch
 mongoose.connect(process.env.CONNECTION_URL)
