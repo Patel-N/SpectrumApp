@@ -12,6 +12,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import PaidIcon from '@mui/icons-material/Paid';
 import { useNavigate } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Navbar from "../Navbar/Navbar.js"
 import {
   makeStyles,
   createTheme,
@@ -23,7 +24,7 @@ const User = ({label,name, handleChange, autoFocus, type,half, handleShowPasswor
     const navigate = useNavigate();
 
   function handleClick(index) {
-        navigate("/");
+        navigate('/dashboard');
     
   
   }
@@ -36,7 +37,9 @@ const User = ({label,name, handleChange, autoFocus, type,half, handleShowPasswor
     const currentUser = JSON.parse(localStorage.getItem("profile")).result;
     console.log(currentUser);
   return (
+<div>
 
+<Navbar></Navbar>
     
 
     <Grid 
@@ -198,6 +201,7 @@ const User = ({label,name, handleChange, autoFocus, type,half, handleShowPasswor
       </Box>
     </Box>
     </Grid>
+    </div>
   )
 }
 

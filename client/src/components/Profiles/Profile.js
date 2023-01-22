@@ -9,6 +9,7 @@ import {
   ThemeProvider
 } from "@material-ui/core/styles";
 import { lightGreen, blue, purple, pink } from "@material-ui/core/colors";
+import Navbar from "../Navbar/Navbar.js"
 
 const Profile = () => {
     const { id } = useParams()
@@ -32,6 +33,10 @@ const Profile = () => {
       }
 
     return (
+      <div>
+
+      <Navbar></Navbar>
+      <br/><br/><br/><br/>
                 <Grid container >
                      
                             <Grid item xs={6}> 
@@ -50,7 +55,7 @@ const Profile = () => {
                             <CompareGraph monthlyUserExpenses={monthlyUserExpenses} monthlyAverageExpenses={monthlyAverageExpenses} />
                             </Grid>
                     </Grid>
-
+        </div>
 
     )
 

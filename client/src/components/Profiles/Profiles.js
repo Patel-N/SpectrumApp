@@ -4,6 +4,7 @@ import {Container, Grow, Grid, useControlled} from '@material-ui/core';
 import { useNavigate } from "react-router-dom";
 import { getUsers, getUserExpenses } from '../../actions/users';
 import { useDispatch, useSelector } from 'react-redux';
+import Navbar from "../Navbar/Navbar.js"
 import Profile from './Profile'
 
 const columns = [
@@ -89,8 +90,12 @@ const Profiles = () => {
         data = users;
         console.log(users);
     return (
+        <div>
+
+      <Navbar></Navbar>
         <Grow in>
         <Container> 
+            <br/><br/><br/>
         <Grid 
             container 
             spacing={0}
@@ -102,7 +107,7 @@ const Profiles = () => {
             fontColor='red'>
             
                 <MUIDataTable
-                title={"Employee List"}
+                title={"Compare Profiles"}
                 onRowClick={() =>navigate('./profiles/'+data.id)}
                 data={data}
                 columns={columns}
@@ -112,6 +117,7 @@ const Profiles = () => {
         </Grid>
         </Container>
         </Grow>
+        </div>
     )
 
 }

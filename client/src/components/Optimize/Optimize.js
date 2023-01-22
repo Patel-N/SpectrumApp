@@ -64,8 +64,12 @@ const monthlyUserExpenses = [
       <div>
 
       <Navbar></Navbar>
+      <br/><br/><br/>
         <Grid container >
         <Grid item xs={6}> 
+        <Grid container spacing={0} justifyContent="center" alignItems="center">
+                                    <div>Your Spendings</div>
+                                </Grid>
         <DonutGraph monthlyUserExpenses={monthlyUserExpenses} />
         <Grid direction="column" item container xs spacing={2} justifyContent="center" alignItems="center">
         <Button color="primary" variant="contained"  onClick={() => handleClick()}  >
