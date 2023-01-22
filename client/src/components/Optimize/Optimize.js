@@ -15,9 +15,7 @@ const Optimize = () => {
         dispatch(getUsers());
     }, [dispatch]);
 
-    const users = useSelector((state) => state.users);
-
-    const filteredUsers = getFilteredUsers(users);
+    
 
     return (
         <Grid 
